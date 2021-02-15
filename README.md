@@ -6,7 +6,7 @@ This is a collection of simple nodes and objects I've used over the past months 
 
 ## Installation
 
-To install this addon simply clone this into your project's addons folder, enable the plugin in your project settings and optionally add the jm_globals.gd script as one of your autoload singletons for easier access to the `GameManager`.
+To install this addon simply clone this into your project's addons folder, enable the plugin in your project settings and optionally add the `jm_globals.gd` script as one of your autoload singletons for easier access to the `GameManager`.
 
 ## Features
 
@@ -20,11 +20,11 @@ Afterwards you can call the `GameManager`'s methods (easier if you have included
 
 ### EventManager
 
-The event manager provides a simple way to implement the observer pattern besides Godot's built-in signals. Godot's signals are great and the best approach in most cases, but when you want to listen to events from multiple nodes and don't care who the emissor is or when two nodes are far apart in the scene tree they might not be the best approach. Having a global event bus that any node can submit events to and register listeners is useful in these cases.
+The event manager provides a simple way to implement the observer pattern besides Godot's built-in signals. Godot's signals are great and the best approach in most cases, but when you want to listen to events from multiple nodes and don't care who the emissor is or when two nodes are far apart in the scene tree, they might not be the best approach. Having a global event bus that any node can submit events to, and register listeners in, is useful in these cases.
 
-You can add `EventManager`s to your scenes at will but if you added a `GameManager` it already provides you with a global `EventManager`. If you added the `jm_globals.gd` script to your autoloads you can access it by calling `<singleton-name>.events()`. Adding listeners is simple and works much the same as connecting signals. In the case of a node registering a listener: `<singleton-name>.events().listen("my_event", "my_callback", self)`. When calling the manager's `listen` method directly care must be taken to call its `ignore` method to unregister the listener if the node is deleted, in order to avoid dangling listeners. However to help with this there is the `SubscriptionList` class, which can handle this for you. To use it simple declare it as a variable in your node's script (`var events : SubscriptionList`), initialize it with the node reference and the event manager to which it will bind (`events = SubscriptionList.new(<singleton-name>.events(), self)` and then use its `listen` method to register callbacks. When the object goes out of scope (in this case when the node it belongs to is deleted) it will automatically unregister all listeners.
+You can add `EventManager`'s to your scenes at will but if you added a `GameManager` it already provides you with a global `EventManager`. If you added the `jm_globals.gd` script to your autoloads you can access it by calling `<singleton-name>.events()`. Adding listeners is simple and works much the same as connecting signals. In the case of a node registering a listener: `<singleton-name>.events().listen("my_event", "my_callback", self)`. When calling the manager's `listen` method directly, care must be taken to call its `ignore` method to unregister the listener when the node is deleted, so as to avoid dangling listeners. To help with this there is the `SubscriptionList` class, which can handle this for you. To use it simply declare it as a variable in your node's script (`var events : SubscriptionList`), initialize it with the node reference and the event manager to which it will bind (`events = SubscriptionList.new(<singleton-name>.events(), self)` and then use its `listen` method to register callbacks. When the object goes out of scope (in this case when the node it belongs to is deleted) it will automatically unregister all listeners.
 
-To submit events both the `EventManager` and `SubscriptionList` provide a `raise` method where you can specify an event as well as provide parameters to go along with it. When an event is raised all listeners registered to it from any node in the tree will be called, whithout the nodes needing to know who raised the event.
+To submit events both the `EventManager` and `SubscriptionList` provide a `raise` method where you can specify an event as well as submit parameters to go along with it. When an event is raised all listeners registered to it from any node in the tree will be called, whithout the nodes needing to know who raised the event.
 
 ### StateMachine
 
