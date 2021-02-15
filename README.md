@@ -26,9 +26,11 @@ The event manager provides a simple way to implement the observer pattern beside
 
 You can add `EventManager`'s to your scenes at will but if you added a `GameManager` it already provides you with a global `EventManager`. If you added the `jm_globals.gd` script to your autoloads you can access it by calling `<singleton-name>.events()`. Adding listeners is simple and works much the same as connecting signals. In the case of a node registering a listener: `<singleton-name>.events().listen("my_event", "my_callback", self)`. When calling the manager's `listen` method directly, care must be taken to call its `ignore` method to unregister the listener when the node is deleted, so as to avoid dangling listeners. To help with this there is the `SubscriptionList` class, which can handle this for you. To use it simply declare it as a variable in your node's script (`var events : SubscriptionList`), initialize it with the node reference and the event manager to which it will bind (`events = SubscriptionList.new(<singleton-name>.events(), self)` and then use its `listen` method to register callbacks. When the object goes out of scope (in this case when the node it belongs to is deleted) it will automatically unregister all listeners.
 
-To submit events the `EventManager` provides a `raise_event` method where you can specify an event as well as submit parameters to go along with it. When an event is raised all listeners registered to it from any node in the tree will be called, whithout the nodes needing to know who raised the event.
+To submit events the `EventManager` provides a `raise_event` method where you can specify an event as well as submit parameters to go along with it. When an event is raised all listeners registered to it from any node in the tree will be called, without the nodes needing to know who raised the event.
 
 ![EventManager Example](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/graphics/eventmanagerexample.png?raw=true)
+
+Note: In the example above the second parameter in the `raise_event` is optional and used to send information about the event. In that case `my_callback` should have a parameter and it would be called with `2` as the value.
 
 ### StateMachine
 
