@@ -6,7 +6,7 @@ This is a collection of simple nodes and objects I've used over the past months 
 
 ## Installation
 
-To install this addon simply clone this into your project's addons folder **and name the folder `jm_game_template`**, enable the plugin in your project settings and optionally add the `jm_globals.gd` script as one of your autoload singletons for easier access to the `GameManager`.
+To install this addon simply clone this **into a folder named `jm_game_template` inside your project's addons folder**, enable the plugin in your project settings and optionally add the `jm_globals.gd` script as one of your autoload singletons for easier access to the `GameManager`.
 
 ## Features
 
