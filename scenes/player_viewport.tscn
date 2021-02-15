@@ -1,0 +1,21 @@
+[gd_scene format=2]
+
+[node name="PlayerViewport" type="ViewportContainer"]
+pause_mode = 2
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+pause_mode = 2
+size = Vector2( 1920, 1080 )
+handle_input_locally = false
+msaa = 2
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+shadow_atlas_size = 4096
