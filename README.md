@@ -1,6 +1,6 @@
 # Godot Common Game Framework
 
-![Header image](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/graphics/framework.png?raw=true)
+![Header image](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/addons/jm_game_template/graphics/framework.png?raw=true)
 
 This is a collection of simple nodes and objects I've used over the past months of using Godot to help in a variety of ways. I figure this might be useful for some other people, especially in gamejam contexts to quickly get access to some common features like split-screen, a global event bus or async scene loading.
 
@@ -18,7 +18,7 @@ This is a singleton node that should be in the root of your project and helps wi
 
 Afterwards you can call the `GameManager`'s methods (easier if you have included `jm_globals.gd` in your autoloaded singletons by typing `<singleton-name>.manager()`) like `set_num_split_screen_viewports` and `set_player_camera` to easily setup split-screen. You can also use the `set_postprocess_material` to add post processing by giving it a material. When using this node do not use Godot's built-in node tree `change_scene` methods, as this will unload the `GameManager`. Instead the `GameManager` provides a set of methods to load scenes like `change_scene`, `load_scene`, `unload_scene`, `add_scene` as well as `load_scene_async`.
 
-![GameManager Example](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/graphics/gamemanagerexample.png?raw=true)
+![GameManager Example](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/addons/jm_game_template/graphics/gamemanagerexample.png?raw=true)
 
 ### EventManager
 
@@ -28,7 +28,7 @@ You can add `EventManager`'s to your scenes at will but if you added a `GameMana
 
 To submit events the `EventManager` provides a `raise_event` method where you can specify an event as well as submit parameters to go along with it. When an event is raised all listeners registered to it from any node in the tree will be called, without the nodes needing to know who raised the event.
 
-![EventManager Example](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/graphics/eventmanagerexample.png?raw=true)
+![EventManager Example](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/addons/jm_game_template/graphics/eventmanagerexample.png?raw=true)
 
 Note: In the example above the second parameter in the `raise_event` is optional and used to send information about the event. In that case `my_callback` should have a parameter and it would be called with `2` as the value.
 
@@ -38,9 +38,9 @@ This provides a simple state machine implementation you can use in games. This i
 
 If no initial state is configured the first child of the `StateMachine` will be the initial state. A state can transition to another by calling its `transition_to` method with the name of the state to transition to. There is also a `transition_to_previous` method which will move the state machine back one state. However the state machine only keeps record of the last state it was in, so calling this multiple times will just alternate between two states.
 
-![StateMachine Example](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/graphics/statemachineexample1.png?raw=true)
+![StateMachine Example](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/addons/jm_game_template/graphics/statemachineexample1.png?raw=true)
 
-![StateMachine Example](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/graphics/statemachineexample2.png?raw=true)
+![StateMachine Example](https://github.com/jocamar/Godot-Common-Game-Framework/blob/main/addons/jm_game_template/graphics/statemachineexample2.png?raw=true)
 
 ### NodePool
 
