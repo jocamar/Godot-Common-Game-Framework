@@ -52,6 +52,19 @@ func _ready():
 	
 	set_process(false)
 
+# Returns the viewport with the given idx
+func get_viewport_by_idx(viewport_idx : int) -> Viewport:
+	return viewports.get_viewport_by_idx(viewport_idx);
+
+# Returns the offset position of the viewport origin point in the screen ([0, 0] means top right, [0.5, 0] is top center, etc)
+func get_viewport_normalized_offset(viewport_idx : int) -> Vector2:
+	return viewports.get_viewport_normalized_offset(viewport_idx);
+
+# Returns the screen share of the given viewport ([1,1] means whole screen, [0.5, 1] means half horizontal and full vertical, etc)
+func get_viewport_relative_screen_share(viewport_idx : int) -> Vector2:
+	return viewports.get_viewport_relative_screen_share(viewport_idx);
+
+
 # Returns the current resolution scale for all viewports.
 func get_viewport_resolution_scale() -> float:
 	return viewports.viewport_resolution_scale;

@@ -28,6 +28,62 @@ var main_viewport_scenes : Node = null;
 func _ready():
 	viewports_h_top = $ViewportsV/ViewportsH;
 	setup_viewports();
+
+func get_viewport_by_idx(viewport_idx : int) -> Viewport:
+	if viewport_idx < num_split_screen_viewports:
+		return player_viewports[viewport_idx];
+	
+	return null;
+	
+func get_viewport_normalized_offset(viewport_idx : int) -> Vector2:
+	if viewport_idx == 0:
+		return Vector2.ZERO;
+	elif viewport_idx == 1:
+		if grow_setting == VIEWPORT_GROW_SETTING.HORIZONTAL_FIRST:
+			return Vector2(0.5,0);
+		else:
+			return Vector2(0, 0.5);
+	elif viewport_idx == 2:
+		if grow_setting == VIEWPORT_GROW_SETTING.HORIZONTAL_FIRST:
+			return Vector2(0,0.5);
+		else:
+			return Vector2(0.5, 0.0);
+	elif viewport_idx == 3:
+		return Vector2(0.5,0.5);
+	
+	return Vector2.ZERO;
+
+func get_viewport_relative_screen_share(viewport_idx : int) -> Vector2:
+	if num_split_screen_viewports == 1:
+		if viewport_idx == 0:
+			return Vector2.ONE;
+		else:
+			return Vector2.ZERO;
+	elif num_split_screen_viewports == 2:
+		if viewport_idx <= 1:
+			if grow_setting == VIEWPORT_GROW_SETTING.HORIZONTAL_FIRST:
+				return Vector2(0.5,1.0);
+			else:
+				return Vector2(1.0,0.5);
+		else:
+			return Vector2.ZERO;
+	elif num_split_screen_viewports == 3:
+		if viewport_idx == 0:
+			return Vector2(0.5,0.5);
+		elif viewport_idx == 1:
+			if grow_setting == VIEWPORT_GROW_SETTING.HORIZONTAL_FIRST:
+				return Vector2(0.5,0.5);
+			else:
+				return Vector2(1.0,0.5);
+		elif viewport_idx == 3:
+			if grow_setting == VIEWPORT_GROW_SETTING.HORIZONTAL_FIRST:
+				return Vector2(1.0,0.5);
+			else:
+				return Vector2(0.5,0.5);
+		else:
+			return Vector2.ZERO;
+	else:
+		return Vector2(0.5,0.5);
 	
 func set_scenes_holder(holder : Node):
 	if main_viewport_scenes:
