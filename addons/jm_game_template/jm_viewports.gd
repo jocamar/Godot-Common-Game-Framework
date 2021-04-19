@@ -215,6 +215,7 @@ func add_viewport():
 		container_to_add_viewport_to.add_child(player_viewport);
 		var viewport : Viewport = player_viewport.get_child(0);
 		viewport.world = main_viewport.world;
+		viewport.world_2d = main_viewport.world_2d;
 		if player_cameras[1]:
 			viewport.add_child(player_cameras[1]);
 			
@@ -230,6 +231,7 @@ func add_viewport():
 		container_to_add_viewport_to.add_child(player_viewport);
 		var viewport : Viewport = player_viewport.get_child(0);
 		viewport.world = main_viewport.world;
+		viewport.world_2d = main_viewport.world_2d;
 		if player_cameras[2]:
 			viewport.add_child(player_cameras[2]);
 			
@@ -241,6 +243,7 @@ func add_viewport():
 		container_to_add_viewport_to.add_child(player_viewport);
 		var viewport : Viewport = player_viewport.get_child(0);
 		viewport.world = main_viewport.world;
+		viewport.world_2d = main_viewport.world_2d;
 		if player_cameras[3]:
 			viewport.add_child(player_cameras[3]);
 			
